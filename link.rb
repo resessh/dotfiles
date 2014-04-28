@@ -15,7 +15,7 @@ dirFiles.each do |dirfile|
 		if homedirFiles.include?(dirfile)
 			puts dirfile+" is already exists."
 		else
-			puts "make symbolick link of "+dirfile+"." 
+			puts "make symbolic link of "+dirfile+"." 
 			File::symlink( currentDir+"/"+dirfile, homeDir+"/"+dirfile)
 		end
 	end

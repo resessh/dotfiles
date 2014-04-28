@@ -1,0 +1,26 @@
+alias rm='rm -i'
+
+# Directory Shortcuts
+alias reapache="sudo /etc/init.d/apache2 restart"
+alias apa="cd /etc/apache2/"
+alias apaconf="vim /etc/apache2/sites-available/default"
+
+# tmux aliases
+alias t="tmux"
+alias ta="tmux a -d"
+alias tk="tmux kill-session -t"
+
+# git aliases
+alias g='git'
+alias gpo='git push origin'
+alias gfo='git fetch origin'
+alias gc='git ci'
+
+alias be='bundle exec'
+alias ber='bundle exec rails'
+
+#zend framework
+alias zf='/home/resessh/zend/bin/zf.sh'
+
+# rails aliases
+alias rails='nocorrect rails'

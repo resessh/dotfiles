@@ -154,6 +154,6 @@ if [ -e ~/.zshrc_path ]; then
     source ~/.zshrc_path
 fi
 
-fi [ -e ~/.zshrc_local ]; then
+if [ -e ~/.zshrc_local ]; then
     source ~/.zshrc_local
 fi

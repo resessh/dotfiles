@@ -1,6 +1,8 @@
 #!/home/resessh/.rbenv/shims/ruby
 
-ignoreFiles = [".git", ".", "..", ".gitignore", "README.rb", "link.rb"]
+require 'fileutils'
+
+ignoreFiles = [".git", ".", "..", ".gitignore", "README.md", "link.rb"]
 localFiles = [".zshrc_local", ".tmux.local.conf"]
 
 
@@ -29,6 +31,7 @@ localFiles.each do |localfile|
 		puts localfile+" is already exists."
 	else
 		puts "make copy of #{localfile}."
+		puts "#{currentDir}/#{localfile}"
 		FileUtils.cp( currentDir+"/"+localfile, homeDir+"/"+localfile)
 	end
 end

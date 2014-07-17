@@ -31,7 +31,6 @@ localFiles.each do |localfile|
 		puts localfile+" is already exists."
 	else
 		puts "make copy of #{localfile}."
-		puts "#{currentDir}/#{localfile}"
 		FileUtils.cp( currentDir+"/"+localfile, homeDir+"/"+localfile)
 	end
 end

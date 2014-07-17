@@ -35,7 +35,7 @@ setopt TRANSIENT_RPROMPT 	# 右プロンプトに入力がきたら消す
 
 # lsを弄る
 # http://nao.no-ip.info/index.cgi?.zsh_common
-export LS_OPTIONS='-v --color'
+export LS_OPTIONS='-vG'
 #--show-control-chars -h --color=auto'
 # デフォルトから、拡張子ごとの設定を除いた物
 export LS_COLORS='no=00:fi=00:di=01;34:ln=01;36:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:su=37;41:sg=30;43'
@@ -138,6 +138,9 @@ function untargz(){
 autoload -Uz compinit
 compinit
 
+# rbenv
+eval "$(rbenv init -)"
+
 # 外部ファイル読み込み
 if [ -e ~/.zshrc_prompt ]; then
     source ~/.zshrc_prompt
@@ -147,6 +150,10 @@ if [ -e ~/.zshrc_alias ]; then
     source ~/.zshrc_alias
 fi
 
-if [ -e ~/.zshrc_debian ]; then
-  source ~/.zshrc_debian
+if [ -e ~/.zshrc_path ]; then
+    source ~/.zshrc_path
+fi
+
+fi [ -e ~/.zshrc_local ]; then
+    source ~/.zshrc_local
 fi

@@ -3,8 +3,7 @@
 ###
 
 # Directory Shortcuts
-alias p='cd ~/Documents/01_private-work/99_proglams/'
-alias w='cd ~/Documents/999_working/'
+alias wo='cd ~/Documents/working/'
  
 #openGL
 alias glcc='gcc -framework GLUT -framework OpenGL'
@@ -17,4 +16,3 @@ PROMPT='%F{green}[${USERNAME}@%m:%~] %# %f'
 ###
 ### PATH
 ###
-export PATH="/usr/local/bin:$PATH"

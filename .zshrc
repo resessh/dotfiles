@@ -138,9 +138,6 @@ function untargz(){
 autoload -Uz compinit
 compinit
 
-# rbenv
-eval "$(rbenv init -)"
-
 # 外部ファイル読み込み
 if [ -e ~/.zshrc_prompt ]; then
     source ~/.zshrc_prompt

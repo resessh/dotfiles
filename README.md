@@ -8,4 +8,4 @@
     $ cd
     $ git clone git://github.com/resessh/dotfiles.git .dotfiles
     $ cd .dotfiles
-    $ ruby ./link.rb
+    $ sh link.sh

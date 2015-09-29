@@ -154,3 +154,6 @@ fi
 if [ -e ~/.zshrc_local ]; then
     source ~/.zshrc_local
 fi
+
+# PATHの重複削除
+typeset -U path PATH

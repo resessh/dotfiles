@@ -33,37 +33,6 @@ setopt sh_word_split		# よく判らん
 setopt RC_EXPAND_PARAM		# {}をbash ライクに展開
 setopt TRANSIENT_RPROMPT 	# 右プロンプトに入力がきたら消す
 
-# lsを弄る
-# http://nao.no-ip.info/index.cgi?.zsh_common
-export LS_OPTIONS='-vG'
-#--show-control-chars -h --color=auto'
-# デフォルトから、拡張子ごとの設定を除いた物
-export LS_COLORS='no=00:fi=00:di=01;34:ln=01;36:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:su=37;41:sg=30;43'
-export LS_COLORS=$LS_COLORS':tw=30;42:ow=34;42:st=37;44:ex=01;32'
-# http://d.hatena.ne.jp/kujirahand/20070204/1170547240
-export LS_COLORS=$LS_COLORS':no=00:fi=00:di=01;34;04:ln=01;36:ex=01;32'
-# stickyビットのない、othersが書き込み可能なファイル
-export LS_COLORS=$LS_COLORS':ow=31'
-# アーカイブ系
-export LS_COLORS=$LS_COLORS':*.tar=35:*.gz=35:*.bz2=35:*.zip=35:*.lha=35:*.z=35:*.Z=35:*.tgz=35'
-
-alias ls="$LS_PATH -h $LS_OPTIONS"
-alias l="$LS_PATH -h $LS_OPTIONS"
-alias la="$LS_PATH -ha $LS_OPTIONS"
-alias ll="$LS_PATH -lAFtr $LS_OPTIONS"
-alias lsH="$LS_PATH -l $LS_OPTIONS"
-alias lsHa="$LS_PATH -la $LS_OPTIONS"
-alias lsg="$LS_PATH -lh $LS_OPTIONS . | grep"
-
-# grep。デフォルトでケースセーフに
-alias -g G="| grep -3 -n -i --color=auto"
-alias -g nG="| grep -3 -n -i --color=auto -v"
-alias grep="grep -3 -n -i --color=auto"
-alias ngrep="grep -3 -n -i --color=auto -v"
-
-# 再帰的に、強調付きでgrep
-alias findgrep='find . -type f -not -path \*/.svn/\* -not -path \*~ | xargs grep -I -H -n --color=always --context=1'
-
 # hisotry
 # setopt share_history # 前のほうですでに設定してある。
 HISTFILE=$HOME/.zsh-history           # 履歴をファイルに保存する
@@ -86,21 +55,6 @@ zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
 # urlエンコード
 function url-encode { E=${${(j: :)@}//(#b)(?)/%$[[##16]##${match[1]}]} }
 function url-decode { D=${1//\%(#b)([0-F][0-F])/\\\x$match[1]} }
-
-# 要するにless。
-alias -g L="| lv -c"	# less -R
-
-# 文字コード変換
-alias -g EUC="| iconv --from-code=EUC-JP --to-code=UTF-8"
-alias -g SJIS="| iconv --from-code=SHIFT-JIS --to-code=UTF-8"
-alias -g TOEUC="| iconv --from-code=UTF-8 --to-code=EUC-JP"
-alias -g TOSJIS="| iconv --from-code=UTF-8 --to-code=SHIFT-JIS"
-function EUCL(){
-    cat $1 EUC L
-}
-function SJISL(){
-    cat $1 SJIS L
-}
 
 # 全プロセスから引数の文字列を含むものを grep する
 function psg() {
@@ -137,6 +91,11 @@ function untargz(){
 # 補完
 autoload -Uz compinit
 compinit
+
+# ssh with peco
+function peco-ssh() {
+	grep -E '^Host[[:space:]]+[^*]' ~/.ssh/config | peco | awk "{print \$2}" | xargs -o -n 1 ssh
+}
 
 # 外部ファイル読み込み
 if [ -e ~/.zshrc_prompt ]; then

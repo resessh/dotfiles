@@ -48,7 +48,7 @@ function SJISL(){
 }
 
 # zshrcのリロード
-alias src="source ~/.zshrc"
+alias reload="exec $SHELL"
 
 # tmux
 alias t="tmux"

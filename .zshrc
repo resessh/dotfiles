@@ -92,6 +92,11 @@ function untargz(){
 autoload -Uz compinit
 compinit
 
+# ssh with peco
+function peco-ssh() {
+	grep -E '^Host[[:space:]]+[^*]' ~/.ssh/config | peco | awk "{print \$2}" | xargs -o -n 1 ssh
+}
+
 # 外部ファイル読み込み
 if [ -e ~/.zshrc_prompt ]; then
     source ~/.zshrc_prompt

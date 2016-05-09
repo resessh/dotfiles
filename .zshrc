@@ -94,8 +94,40 @@ compinit
 
 # ssh with peco
 function peco-ssh() {
-	grep -E '^Host[[:space:]]+[^*]' ~/.ssh/config | peco | awk "{print \$2}" | xargs -o -n 1 ssh
+  local selected_host=$(awk '
+  tolower($1)=="host" {
+    for (i=2; i<=NF; i++) {
+      if ($i !~ "[*?]") {
+        print $i
+      }
+    }
+  }
+  ' ~/.ssh/config | sort | peco --query "$LBUFFER")
+  if [ -n "$selected_host" ]; then
+    BUFFER="ssh ${selected_host}"
+    zle accept-line
+  fi
+  zle clear-screen
 }
+zle -N peco-ssh
+stty -ixon
+bindkey '^s' peco-ssh
+
+# select history with peco
+function peco-select-history() {
+  typeset tac
+  if which tac > /dev/null; then
+    tac="tac"
+  else
+    tac='tail -r'
+  fi
+  BUFFER=$(fc -l -n 1 | eval $tac | peco --query "$LBUFFER" --prompt "[zsh history]")
+  CURSOR=$#BUFFER
+  zle redisplay
+}
+zle -N peco-select-history
+stty -ixon
+bindkey '^r' peco-select-history
 
 # 外部ファイル読み込み
 if [ -e ~/.zshrc_prompt ]; then

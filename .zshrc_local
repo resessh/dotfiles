@@ -12,7 +12,9 @@ alias glcc='gcc -framework GLUT -framework OpenGL'
 ### prompt
 ###
 TERM=xterm-256color
-PROMPT='%F{green}[${USERNAME}@%m:%~] %# %f'
+export WINDOW_THEME_COLOR="green"
+export TMUX_ENV_NAME="Utamaru"
+PROMPT='%F{${WINDOW_THEME_COLOR}}[${USERNAME}@%m:%~] %# %f'
 
 ###
 ### PATH
@@ -26,3 +28,12 @@ PROMPT='%F{green}[${USERNAME}@%m:%~] %# %f'
 # export PATH="$HOME/.rbenv/bin:$PATH"
 # eval "$(pyenv init -)"
 # export PATH="$HOME/.pyenv/bin:$PATH"
+
+###
+### ec2update
+###
+#ec2update() {
+#  export AWS_PROFILE_NAME=$@
+#  [[ $# -gt 0 ]] && eval "$(awsenv $@)"
+#  ec2ssh update
+#}

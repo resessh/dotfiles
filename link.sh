@@ -10,9 +10,6 @@ cp -i $CRNTDIR/.zshrc_local ~/.
 
 ln -s $CRNTDIR/.vimrc ~/.vimrc
 
-ln -s $CRNTDIR/.tmux.conf ~/.
-cp -i $CRNTDIR/.tmux.local.conf ~/.
-
 ln -s $CRNTDIR/.gitconfig ~/.
 
 mkdir -p ~/.peco 2>/dev/null

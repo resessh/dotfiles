@@ -26,7 +26,7 @@
      remote = green
 
 [core]
-      excludesfile = ~/.gitignore # globalな.gitignoreの指定
+	excludesfile = /Users/xuesuli/.gitignore_global
       autocrlf = input            # CRLFを自動変換
       editor = vim
 
@@ -43,6 +43,8 @@
       lg2 = log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold cyan)%aD%C(reset) %C(bold green)(%ar)%C(reset)%C(bold yellow)%d%C(reset)%n''          %C(white)%s%C(reset) %C(dim white)- %an%C(reset)' --all
       lg = !"git lg1"
       fx = commit --fixup 
+	showpr = "!f() { git log --merges --oneline --reverse --ancestry-path $1...master | grep 'Merge pull request #' | head -n 1; }; f"
+	openpr = "!f() { hub browse -- `git log --merges --oneline --reverse --ancestry-path $1...master | grep 'Merge pull request #' | head -n 1 | cut -f5 -d' ' | sed -e 's%#%pull/%'`; }; f"
 
 [difftool "sourcetree"]
       cmd = opendiff \"$LOCAL\" \"$REMOTE\"

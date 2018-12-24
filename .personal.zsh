@@ -54,11 +54,7 @@ fi
 ###
 alias rm='rm -i'
 alias reload="exec $SHELL"
-alias g='git'
-alias gpo='git push origin'
-alias gfo='git fetch origin'
-alias gc='git ci'
-
+alias drma="docker ps --filter \"status=exited\" -q | xargs docker rm -v"
 ###
 ### prompt
 ###
@@ -79,7 +75,7 @@ ZSH_THEME_GIT_PROMPT_AHEAD="%{↑%G%}"
 ZSH_THEME_GIT_PROMPT_UNTRACKED="%{…%G%}"
 ZSH_THEME_GIT_PROMPT_CLEAN="%{$fg_bold[green]%}%{✔%G%}"
 
-PROMPT='%F{238}%D %*%f ${FSGREEN}|%f %F{243}%~%f $(git_super_status)
+PROMPT='%F{238}%D %*%f ${FSGREEN}|%f %F{243}%~%f $(git_status)
 %(?.${FSGREEN}.${FSRED}) ❯ %f'
 
 ###
